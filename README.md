@@ -1,4 +1,4 @@
-;orenz
+lorenz
 ======
 
 This contains the implementation of the 40-variable and multi-scale models
