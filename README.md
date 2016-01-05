@@ -10,5 +10,3 @@ modules.
 2. Execute the python setup file as follows:
 
         python setup.py build_ext --inplace
-
-3. You may remove the build folder.
