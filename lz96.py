@@ -10,7 +10,7 @@ References:
 Author:             Jeremy Shaw
 Institution:        Portland State University
 Date Created:       17 November 2015
-Last Modified Date: 20 November 2015
+Last Modified Date: 29 January 2016
 """
 
 import lz96_fortran as fortran
