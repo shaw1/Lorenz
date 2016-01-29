@@ -36,7 +36,7 @@ class LZ96(object):
         h - set to 1.0 in [1]
         J - Number of small-scale Y variables between two X variables
         K - Number of large-scale X variables
-        N - Total number of variables in the model
+        n - Total number of variables in the model
         dt - Time step for the fourth-order Runge-Kutta method
         x0 - Initial state for model integration
 
@@ -63,10 +63,10 @@ class LZ96(object):
         self.h = h
         self.J = J
         self.K = K
-        self.N = K * (J + 1)
+        self.n = K * (J + 1)
         self.dt = dt
 
-        self.x0 = zeros(self.N)
+        self.x0 = zeros(self.n)
         self.x0[0 : K] = F
         self.x0[(K - 1) / 2] += 0.008
 
