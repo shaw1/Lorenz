@@ -96,7 +96,7 @@ class LZ95(object):
     def forecast(self, x, ndt=1):
         """RK4 integration of the ode system dX/dt.
 
-        Argument:
+        Arguments:
             x - Initial state of the model trajectory
             ndt - Number of time-steps to integrate
 
