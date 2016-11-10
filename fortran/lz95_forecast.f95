@@ -1,6 +1,6 @@
 subroutine lz95_forecast(x, y, n, F, dt)
-  ! This subroutine performs the fourth-order Runge-Kutta integration (RK4)
-  ! scheme to the Lorenz 40-variable model.
+  ! This subroutine performs the fourth-order Runge-Kutta integration
+  ! (RK4) scheme to the Lorenz 40-variable model.
   !
   ! Inputs:
   !     x - Vector of X-variables
@@ -13,13 +13,13 @@ subroutine lz95_forecast(x, y, n, F, dt)
   !
   ! Reference:
   !     Lorenz, E. N. and Emanuel K. A. (1998). Optimal Sites for
-  !     Supplementary Weather Observations: Simulation with a Small Model.
-  !     Journal of the Atmospheric Sciences.
+  !     Supplementary Weather Observations: Simulation with a Small
+  !     Model. Journal of the Atmospheric Sciences.
   !
   ! Author:             Jeremy Shaw
   ! Institution:        Portland State University
   ! Date Created:       18 November 2015
-  ! Last Modified Date: 20 November 2015
+  ! Last Modified Date: 10 November 2016
   implicit none
 
   integer, intent(in) :: n

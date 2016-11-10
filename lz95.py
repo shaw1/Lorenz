@@ -1,25 +1,27 @@
 """This module implements the Lorenz 40-variable model.
 
 References:
-    [1] Lorenz, E. N. (1996). Predictability: A problem partly solved. Proc.
-        Seminar on predictability.
+    [1] Lorenz, E. N. (1996). Predictability: A problem partly solved.
+        Proc. Seminar on predictability.
     [2] Lorenz, E. N. and Emanuel K. A. (1998). Optimal Sites for
-        Supplementary Weather Observations: Simulation with a Small Model.
-        Journal of the Atmospheric Sciences.
+        Supplementary Weather Observations: Simulation with a Small
+        Model. Journal of the Atmospheric Sciences.
 
 Author:             Jeremy Shaw
 Institution:        Portland State University
 Date Created:       17 November 2015
 Last Modified Date: 20 November 2015
 """
+import numpy as np
 
 import lz95_fortran as fortran
 
 class LZ95(object):
     """Implements the model of Edward Lorenz in [2].
 
-    This class implements the the model given by the coupled differential
-    equations dX[k] / dt = X[k] * (X[k + 1] - X[k - 2]) - X[k] + F.
+    This class implements the the model given by the coupled
+    differential equations.
+        dX[k] / dt = X[k] * (X[k + 1] - X[k - 2]) - X[k] + F
 
     Attributes:
         F - Set to 8.0 in [2]
@@ -29,26 +31,27 @@ class LZ95(object):
 
     Functionality:
         model - The right side of the coupled ODE system
-        model_tlm - Tangent linear model of the right side of the ODE system
+        model_tlm - Tangent linear model of the right side of the ODE
+            system
         model_adj - The adjoint of the right side of the ODE system
-        forecast - Numerical integration of the ODE system via RK4 method
+        forecast - Numerical integration of the ODE system via RK4
+            method
         forecast_tlm - Tangent linear model of the RK4 method
         forecast_adj - Adjoint model of the RK4 method
     """
     def __init__(self, F=8.0, n=40, dt=0.05):
         """Initializes model parameters.
 
-        Initializes the parameters for the Lorenz 95 model. In [2], he sets
-        F is set to 8.0 and n = 40. The initial state x0 is set as in [2] as
-        well.
+        Initializes the parameters for the Lorenz 95 model. In [2], he
+        sets F is set to 8.0 and n = 40. The initial state x0 is set
+        as in [2] as well.
+
         """
-        from numpy import zeros
-        
         self.F = F
         self.n = n
         self.dt = dt
 
-        self.x0 = zeros(n)
+        self.x0 = np.zeros(n)
         self.x0[0 : n] = F
         self.x0[(n - 1) / 2] += 0.008
 
@@ -66,8 +69,8 @@ class LZ95(object):
     def model_tlm(self, x, xd):
         """Tangent linear model of the govering equations dX/dt.
 
-        The tangent linear model performs the product of the Jacobian matrix
-        evaluated at x with the direction vector xd.        
+        The tangent linear model performs the product of the Jacobian
+        matrix evaluated at x with the direction vector xd.
         
         Arguments:
             x - Vector of x-variables
@@ -118,8 +121,8 @@ class LZ95(object):
             xd - Direction vector
             ndt - Number of time-steps to integrate
 
-        Returns:
-            yd - The derivative of RK4 integration in the direction of xd.
+        Returns: yd - The derivative of RK4 integration in the
+            direction of xd.
         """
         yd = fortran.lz95_forecast_tlm(x, xd, self.F, self.dt)
 
@@ -146,10 +149,12 @@ class LZ95(object):
 
         # Forward sweep
         for i in xrange(1, ndt):
-            xlist[i] = fortran.lz95_forecast(xlist[i - 1], self.F, self.dt)
+            xlist[i] = fortran.lz95_forecast(xlist[i - 1], self.F,
+                                             self.dt)
 
         # Backward sweep
         for i in xrange(ndt - 1, -1, -1):
-            xb = fortran.lz95_forecast_adj(xlist[i], xb, self.F, self.dt)
+            xb = fortran.lz95_forecast_adj(xlist[i], xb, self.F,
+                                           self.dt)
         
         return xb

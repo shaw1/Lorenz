@@ -1,6 +1,6 @@
 subroutine lz95_model(x, y, n, F)
-  ! This subroutine computes the right-hand-side of the governing equations
-  ! for the Lorenz model
+  ! This subroutine computes the right-hand-side of the governing
+  ! equations for the Lorenz model
   !
   ! dX[k] / dt = X[k] * (X[k + 1] - X[k - 2]) - X[k] + F.
   !
@@ -14,13 +14,13 @@ subroutine lz95_model(x, y, n, F)
   !
   ! Reference:
   !     Lorenz, E. N. and Emanuel K. A. (1998). Optimal Sites for
-  !     Supplementary Weather Observations: Simulation with a Small Model.
-  !     Journal of the Atmospheric Sciences.
+  !     Supplementary Weather Observations: Simulation with a Small
+  !     Model. Journal of the Atmospheric Sciences.
   !
   ! Author:             Jeremy Shaw
   ! Institution:        Portland State University
   ! Date Created:       18 November 2015
-  ! Last Modified Date: 20 November 2015
+  ! Last Modified Date: 10 November 2016
   implicit none
 
   integer, intent(in) :: n

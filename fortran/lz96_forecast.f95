@@ -1,6 +1,6 @@
 subroutine lz96_forecast(x, y, b, c, F, h, J, K, n, dt)
-  ! This subroutine performs the fourth-order Runge-Kutta integration (RK4)
-  ! scheme to the Lorenz multi-scale model.
+  ! This subroutine performs the fourth-order Runge-Kutta integration
+  ! (RK4) scheme to the Lorenz multi-scale model.
   !
   ! Inputs:
   !     x - Input state vector
@@ -14,16 +14,16 @@ subroutine lz96_forecast(x, y, b, c, F, h, J, K, n, dt)
   !     y - Result of integrating x using RK4.
   !
   ! References:
-  !     [1] Lorenz, E. N. (1996). Predictability: A problem partly solved. Proc.
-  !         Seminar on predictability.
+  !     [1] Lorenz, E. N. (1996). Predictability: A problem partly
+  !         solved. Proc. Seminar on predictability.
   !     [2] Lorenz, E. N. and Emanuel K. A. (1998). Optimal Sites for
-  !         Supplementary Weather Observations: Simulation with a Small Model.
-  !         Journal of the Atmospheric Sciences.
+  !         Supplementary Weather Observations: Simulation with a
+  !         Small Model. Journal of the Atmospheric Sciences.
   !
   ! Author:             Jeremy Shaw
   ! Institution:        Portland State University
   ! Date Created:       18 November 2015
-  ! Last Modified Date: 20 November 2015
+  ! Last Modified Date: 10 November 2016
   implicit none
 
   integer, intent(in) :: n
