@@ -11,10 +11,13 @@ subroutine lz95_forecast(x, y, n, F, dt)
   ! Output:
   !     y - Result of integrating x using RK4.
   !
-  ! Reference:
-  !     Lorenz, E. N. and Emanuel K. A. (1998). Optimal Sites for
-  !     Supplementary Weather Observations: Simulation with a Small
-  !     Model. Journal of the Atmospheric Sciences.
+  ! References:
+  !     [1] Lorenz, E. N. (1996). Predictability: A problem partly
+  !         solved. Proc. Seminar on predictability.
+  !
+  !     [2] Lorenz, E. N. and Emanuel K. A. (1998). Optimal Sites for
+  !         Supplementary Weather Observations: Simulation with a
+  !         Small Model. Journal of the Atmospheric Sciences.
   !
   ! Author:             Jeremy Shaw
   ! Institution:        Portland State University
@@ -34,9 +37,9 @@ subroutine lz95_forecast(x, y, n, F, dt)
   double precision, dimension(n) :: k4
 
   call lz95_model(x, k1, n, F)
-  call lz95_model(x + (dt / 2.D0) * k1, k2, n, F)
-  call lz95_model(x + (dt / 2.D0) * k2, k3, n, F)
+  call lz95_model(x + (dt / 2.d0) * k1, k2, n, F)
+  call lz95_model(x + (dt / 2.d0) * k2, k3, n, F)
   call lz95_model(x + dt * k3, k4, n, F)
 
-  y = x + (dt / 6.D0) * (k1 + 2.D0 * k2 + 2.D0 * k3 + k4)
+  y = x + (dt / 6.d0) * (k1 + 2.d0 * k2 + 2.d0 * k3 + k4)
 end subroutine lz95_forecast
