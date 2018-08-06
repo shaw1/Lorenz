@@ -68,7 +68,7 @@ class LZ95(object):
         return fortran.lz95_model(x, self.F)
 
     def model_tlm(self, x, xd):
-        """Tangent linear model of the govering equations dX/dt.
+        """Tangent linear model of the governing equations dX/dt.
 
         The tangent linear model performs the product of the Jacobian
         matrix evaluated at x with the direction vector xd.
